@@ -9,7 +9,6 @@
   --purple:#7c5cff;
   --cyan:#33e6ff;
   --green:#22c55e;
-  --yellow:#ffd84d;
   --shadow: 0 30px 90px rgba(0,0,0,.50);
   --radius: 22px;
 }
@@ -80,13 +79,14 @@ a:hover{ text-decoration:underline; }
   gap:10px;
   align-items:flex-end;
 }
+
 .hud-pill{
   padding:10px 12px;
   border-radius: 999px;
   background: rgba(0,0,0,.35);
   border: 1px solid rgba(255,255,255,.18);
   box-shadow: 0 16px 50px rgba(0,0,0,.25);
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .hud-controls{
@@ -106,7 +106,7 @@ a:hover{ text-decoration:underline; }
   background: rgba(0,0,0,.35);
   border: 1px solid rgba(255,255,255,.18);
   color: var(--muted);
-  font-weight: 800;
+  font-weight: 900;
   font-size: 12px;
 }
 .vol input{ width: 120px; }
@@ -144,7 +144,6 @@ a:hover{ text-decoration:underline; }
   filter: blur(24px);
   z-index:0;
 }
-
 .card > *{ position: relative; z-index:1; }
 
 .card-head{
@@ -183,7 +182,6 @@ h3{ margin: 0 0 8px; font-size: 14px; letter-spacing:.2px; }
   overflow:hidden;
   user-select: none;
 }
-
 .btn:before{
   content:"";
   position:absolute;
@@ -196,7 +194,6 @@ h3{ margin: 0 0 8px; font-size: 14px; letter-spacing:.2px; }
   transition: top .55s ease;
   opacity:.55;
 }
-
 .btn:hover{ transform: translateY(-1px); filter: saturate(1.2); }
 .btn:hover:before{ top: -30%; }
 .btn:active{ transform: translateY(0px) scale(.99); }
@@ -206,13 +203,11 @@ h3{ margin: 0 0 8px; font-size: 14px; letter-spacing:.2px; }
   border-color: rgba(124,92,255,.55);
   box-shadow: 0 18px 60px rgba(124,92,255,.20);
 }
-
 .btn.good{
   background: linear-gradient(135deg, rgba(34,197,94,.18), rgba(51,230,255,.10));
   border-color: rgba(34,197,94,.55);
   box-shadow: 0 18px 60px rgba(34,197,94,.18);
 }
-
 .btn.ghost{ background: rgba(0,0,0,.35); }
 .btn.big{ padding: 12px 18px; font-size: 14px; }
 
@@ -223,6 +218,7 @@ h3{ margin: 0 0 8px; font-size: 14px; letter-spacing:.2px; }
   margin: 10px 0 12px;
 }
 
+/* Progress */
 .progress{
   display:inline-block;
   width: 150px;
@@ -251,7 +247,6 @@ h3{ margin: 0 0 8px; font-size: 14px; letter-spacing:.2px; }
   justify-content:center;
   margin: 14px 0 12px;
 }
-
 .cell{
   width: 92px;
   height: 92px;
@@ -267,7 +262,6 @@ h3{ margin: 0 0 8px; font-size: 14px; letter-spacing:.2px; }
     0 18px 50px rgba(0,0,0,.25);
   user-select:none;
 }
-
 .cell.win{
   outline: 2px solid rgba(51,230,255,.9);
   box-shadow:
@@ -305,7 +299,6 @@ h3{ margin: 0 0 8px; font-size: 14px; letter-spacing:.2px; }
   font-size: 12px;
 }
 
-/* Panels */
 .panel{
   padding: 14px 12px;
   border-radius: 18px;
@@ -335,6 +328,29 @@ h3{ margin: 0 0 8px; font-size: 14px; letter-spacing:.2px; }
 .proj-title{ font-weight: 1000; margin-bottom: 6px; }
 .links{ margin-top: 8px; }
 
+.contact-list{
+  display:grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+.contact-item{
+  display:flex;
+  gap: 12px;
+  align-items:center;
+  padding: 12px 12px;
+  border-radius: 18px;
+  background: rgba(0,0,0,.28);
+  border: 1px solid rgba(255,255,255,.12);
+  transition: transform .12s ease, filter .12s ease;
+}
+.contact-item:hover{
+  transform: translateY(-1px);
+  filter: saturate(1.15);
+}
+.contact-emoji{
+  font-size: 22px;
+}
+
 /* Confetti canvas */
 #confetti{
   position: fixed;
@@ -342,4 +358,7 @@ h3{ margin: 0 0 8px; font-size: 14px; letter-spacing:.2px; }
   pointer-events: none;
   z-index: 999;
 }
+
+
+
 

@@ -15,24 +15,20 @@
       <div class="logo" aria-hidden="true"></div>
       <div>
         <h1>Amaris Sneed</h1>
-        <p>Software Engineer • Data Analytics • Musician • Photographer</p>
+        <p>Software Engineer • Data Analytics • Mentor</p>
       </div>
     </div>
 
     <div class="hud">
-      <div class="hud-pill">
-        🎯 Points: <span id="points">0</span>
-      </div>
-      <div class="hud-pill">
-        🧭 Sections: <span id="visitedCount">0</span>/4
-      </div>
+      <div class="hud-pill">🎯 Points: <span id="points">0</span></div>
+      <div class="hud-pill">🧭 Sections: <span id="visitedCount">0</span>/4</div>
 
       <div class="hud-controls">
         <button id="soundToggle" class="btn ghost" type="button" aria-pressed="true">
           🔊 Sound: ON
         </button>
 
-        <label class="vol">
+        <label class="vol" title="Sound volume">
           <span>Vol</span>
           <input id="volume" type="range" min="0" max="1" step="0.01" value="0.6" />
         </label>
@@ -48,17 +44,12 @@
       <div class="card-head">
         <div>
           <h2>🎰 Portfolio Slots</h2>
-          <p class="muted">
-            Spin for neon bonuses. Visit sections to earn points (first visit only).
-          </p>
+          <p class="muted">Spin for bonus points. Match rows, columns, or diagonals.</p>
         </div>
-
-        <div class="pill">
-          Multiplier: <span id="multiplier">x1</span>
-        </div>
+        <div class="pill">Multiplier: <span id="multiplier">x1</span></div>
       </div>
 
-      <div class="grid-reels" id="slotGrid" aria-label="3 by 3 slot grid">
+      <div class="grid-reels" aria-label="3 by 3 slot grid">
         <div class="cell" id="c0">⭐</div>
         <div class="cell" id="c1">🚀</div>
         <div class="cell" id="c2">💎</div>
@@ -76,7 +67,7 @@
       </div>
 
       <div class="notice" id="message">
-        Welcome! Visit sections, spin, and rack up points ✨
+        Welcome! Spin 🎰 or explore sections to earn points ✨
       </div>
 
       <div class="paytable">
@@ -90,12 +81,12 @@
       </div>
     </section>
 
-    <!-- SECTIONS -->
+    <!-- CONTENT / SECTIONS -->
     <section class="card content">
       <div class="card-head">
         <div>
           <h2>Explore</h2>
-          <p class="muted">Earn points by exploring each section.</p>
+          <p class="muted">Earn points by exploring each section (first visit only).</p>
         </div>
 
         <div class="pill">
@@ -116,8 +107,8 @@
       <div class="panel" id="about">
         <h3>About</h3>
         <p>
-          I’m a software engineer and data analytics student who loves building practical tools,
-          learning fast, and creating projects that are useful, creative, and fun.
+          I’m a software engineer and data analytics student who enjoys building interactive apps,
+          learning quickly, and creating projects that are useful, creative, and fun.
         </p>
       </div>
 
@@ -138,10 +129,8 @@
           <li>
             <div class="proj-title">Youth Mentor Project — Community Leadership</div>
             <div class="muted">
-              I designed and built a SQL database for a Youth Mentorship program to convert online form submissions into structured, queryable data. 
-              I created a relational schema to store mentors, mentees, raw intake submissions, matches, and session tracking, ensuring the data could support reporting and future growth. 
-              I then implemented a small ETL process that exports form responses (CSV/Sheets), cleans and maps the fields, and loads them into the database—saving both the original submission payload for auditing and the normalized records for daily operations. 
-              This allowed the organization to replace spreadsheets with a reliable database that supports matching mentors to mentees and tracking program activity over time.
+              Mentored youth through structured goal-setting, accountability, and positive guidance.
+              Focused on consistency, communication, and growth.
             </div>
             <div class="links">
               🔗 <a href="https://github.com/PinkRanger2Amy" target="_blank" rel="noopener">GitHub</a>
@@ -160,38 +149,41 @@
           <span class="tag">Git/GitHub</span>
           <span class="tag">Data Visualization</span>
           <span class="tag">Communication</span>
-          <span class="tag">Musician</span>
-          <span class="tag">Photography</span>
+          <span class="tag">Mentorship</span>
         </div>
       </div>
 
       <div class="panel hidden" id="contact">
         <h3>Contact</h3>
-        <p>
-          GitHub:
-          <a href="https://github.com/PinkRanger2Amy" target="_blank" rel="noopener">
-            PinkRanger2Amy
-          </a>
-        </p>
-        <p>
-  LinkedIn:
-  <a
-    href="https://www.linkedin.com/in/amaris-s-6b7120148"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="contact-link"
-  >
-    Amaris Sneed
-  </a>
-</p>
 
+        <div class="contact-list">
+          <a class="contact-item" href="https://github.com/PinkRanger2Amy" target="_blank" rel="noopener">
+            <span class="contact-emoji">🐙</span>
+            <span>
+              <strong>GitHub</strong><br />
+              <span class="muted">github.com/PinkRanger2Amy</span>
+            </span>
+          </a>
+
+          <!-- ✅ UPDATE THIS LINK if your LinkedIn URL is different -->
+          <a class="contact-item" href="www.linkedin.com/in/amaris-s-6b7120148" target="_blank" rel="noopener">
+            <span class="contact-emoji">💼</span>
+            <span>
+              <strong>LinkedIn</strong><br />
+              <span class="muted">linkedin.com/in/amaris-s-6b7120148</span>
+            </span>
+          </a>
+        </div>
+
+        <p class="muted" style="margin-top:10px;">Let’s connect and build something meaningful.</p>
       </div>
     </section>
   </main>
 
   <canvas id="confetti" aria-hidden="true"></canvas>
-
   <script src="script.js"></script>
 </body>
 </html>
+
+
 
