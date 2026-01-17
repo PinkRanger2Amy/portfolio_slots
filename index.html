@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amaris Sneed | Portfolio Slots</title>
+  <title>Amaris Sneed | Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -11,45 +11,39 @@
   <div class="bg-glow"></div>
 
   <header class="header">
-    <div class="brand">
-      <div class="logo" aria-hidden="true"></div>
-      <div>
-        <h1>Amaris Sneed</h1>
-        <p>Software Engineer • Data Analytics • Mentor</p>
-      </div>
-    </div>
+    <h1>Amaris Sneed</h1>
+    <p>Software Engineer • Data Analytics • Photography & Videography</p>
 
     <div class="hud">
-      <div class="hud-pill">🎯 Points: <span id="points">0</span></div>
-      <div class="hud-pill">🧭 Sections: <span id="visitedCount">0</span>/4</div>
+      <span>🎯 Points: <strong id="points">0</strong></span>
+      <span>🧭 Sections: <strong id="visitedCount">0</strong>/5</span>
+    </div>
 
-      <div class="hud-controls">
-        <button id="soundToggle" class="btn ghost" type="button" aria-pressed="true">
-          🔊 Sound: ON
-        </button>
-
-        <label class="vol" title="Sound volume">
-          <span>Vol</span>
-          <input id="volume" type="range" min="0" max="1" step="0.01" value="0.6" />
-        </label>
-
-        <button id="resetBtn" class="btn ghost" type="button">Reset</button>
+    <div class="progress-wrap" aria-label="Section progress">
+      <span class="progress-label">Progress</span>
+      <div class="progress">
+        <div class="bar" id="progressBar"></div>
       </div>
+      <span class="progress-text" id="progressText">0%</span>
+    </div>
+
+    <div class="sound-row">
+      <button id="soundToggle" class="btn ghost" type="button" aria-pressed="true">🔊 Sound: ON</button>
+      <label class="vol" title="Sound volume">
+        <span>Volume</span>
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.6" />
+      </label>
+      <button id="resetBtn" class="btn ghost" type="button">Reset</button>
     </div>
   </header>
 
   <main class="container">
     <!-- SLOT MACHINE -->
-    <section class="card slot">
-      <div class="card-head">
-        <div>
-          <h2>🎰 Portfolio Slots</h2>
-          <p class="muted">Spin for bonus points. Match rows, columns, or diagonals.</p>
-        </div>
-        <div class="pill">Multiplier: <span id="multiplier">x1</span></div>
-      </div>
+    <section class="card">
+      <h2>🎰 Portfolio Slots</h2>
+      <p class="muted">Match rows, columns, or diagonals to earn points.</p>
 
-      <div class="grid-reels" aria-label="3 by 3 slot grid">
+      <div class="grid">
         <div class="cell" id="c0">⭐</div>
         <div class="cell" id="c1">🚀</div>
         <div class="cell" id="c2">💎</div>
@@ -61,121 +55,82 @@
         <div class="cell" id="c8">🌟</div>
       </div>
 
-      <div class="slot-actions">
-        <button id="spinBtn" class="btn primary big" type="button">Spin</button>
+      <div class="actions">
+        <button id="spinBtn" class="btn primary" type="button">Spin</button>
         <button id="claimBtn" class="btn good" type="button">Claim Explorer Bonus</button>
       </div>
 
-      <div class="notice" id="message">
-        Welcome! Spin 🎰 or explore sections to earn points ✨
+      <div id="message" class="message">
+        Spin the slots or explore sections to earn points.
       </div>
 
       <div class="paytable">
-        <h3>Paytable</h3>
-        <div class="chips">
-          <span class="chip">✅ 1 line = +150</span>
-          <span class="chip">🔥 2 lines = +250</span>
-          <span class="chip">🎉 3+ lines = +400</span>
-          <span class="chip">🙂 none = +25</span>
-        </div>
+        ✅ 1 line = +150 • 🔥 2 lines = +250 • 🎉 3+ lines = +400 • 🙂 none = +25
       </div>
     </section>
 
-    <!-- CONTENT / SECTIONS -->
-    <section class="card content">
-      <div class="card-head">
-        <div>
-          <h2>Explore</h2>
-          <p class="muted">Earn points by exploring each section (first visit only).</p>
-        </div>
-
-        <div class="pill">
-          Progress
-          <span class="progress" aria-label="progress">
-            <span class="bar" id="progressBar"></span>
-          </span>
-        </div>
-      </div>
-
-      <div class="nav-buttons">
+    <!-- CONTENT -->
+    <section class="card">
+      <div class="nav">
         <button class="btn ghost" data-section="about" type="button">About (+25)</button>
         <button class="btn ghost" data-section="projects" type="button">Projects (+35)</button>
         <button class="btn ghost" data-section="skills" type="button">Skills (+30)</button>
+        <button class="btn ghost" data-section="resume" type="button">Resume (+40)</button>
         <button class="btn ghost" data-section="contact" type="button">Contact (+20)</button>
       </div>
 
-      <div class="panel" id="about">
+      <div id="about" class="panel">
         <h3>About</h3>
         <p>
-          I’m a software engineer and data analytics student who enjoys building interactive apps,
-          learning quickly, and creating projects that are useful, creative, and fun.
+          I’m a software engineer and data analytics student who enjoys building
+          interactive and meaningful projects.
         </p>
       </div>
 
-      <div class="panel hidden" id="projects">
+      <div id="projects" class="panel hidden">
         <h3>Projects</h3>
-        <ul class="projects">
-          <li>
-            <div class="proj-title">NASA Data Analytics — WISE NEO & Comet Discovery Stats</div>
-            <div class="muted">
-              Cleaned and analyzed NASA discovery data to explore trends over time, then visualized insights
-              for storytelling and decision-making.
-            </div>
-            <div class="links">
-              🔗 <a href="https://github.com/PinkRanger2Amy" target="_blank" rel="noopener">GitHub</a>
-            </div>
-          </li>
-
-          <li>
-            <div class="proj-title">Youth Mentor Project — Community Leadership</div>
-            <div class="muted">
-              Mentored youth through structured goal-setting, accountability, and positive guidance.
-              Focused on consistency, communication, and growth.
-            </div>
-            <div class="links">
-              🔗 <a href="https://github.com/PinkRanger2Amy" target="_blank" rel="noopener">GitHub</a>
-            </div>
-          </li>
+        <ul>
+          <li><strong>NASA Data Analytics Project</strong> — Python + SQL analysis & insights.</li>
+          <li><strong>Youth Mentor Database Project</strong> — Designed and implemented a relational PostgreSQL database for a 
+            youth mentorship program by cleaning and importing online form data, defining table relationships, 
+            and writing SQL queries for reporting and tracking.</li>
         </ul>
       </div>
 
-      <div class="panel hidden" id="skills">
+      <div id="skills" class="panel hidden">
         <h3>Skills</h3>
-        <div class="tags">
-          <span class="tag">Python</span>
-          <span class="tag">SQL</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">HTML/CSS</span>
-          <span class="tag">Git/GitHub</span>
-          <span class="tag">Data Visualization</span>
-          <span class="tag">Communication</span>
-          <span class="tag">Mentorship</span>
-        </div>
+        <p>Python, SQL, JavaScript, HTML, CSS, Git/GitHub, Data Visualization</p>
       </div>
 
-      <div class="panel hidden" id="contact">
-        <h3>Contact</h3>
+      <div id="resume" class="panel hidden">
+        <h3>Resume</h3>
+        <p class="muted">
+          Download or view my resume highlighting software engineering, data analytics, photography, and videography experience.
 
-        <div class="contact-list">
-          <a class="contact-item" href="https://github.com/PinkRanger2Amy" target="_blank" rel="noopener">
-            <span class="contact-emoji">🐙</span>
-            <span>
-              <strong>GitHub</strong><br />
-              <span class="muted">github.com/PinkRanger2Amy</span>
-            </span>
-          </a>
-
-          <!-- ✅ UPDATE THIS LINK if your LinkedIn URL is different -->
-          <a class="contact-item" href="www.linkedin.com/in/amaris-s-6b7120148" target="_blank" rel="noopener">
-            <span class="contact-emoji">💼</span>
-            <span>
-              <strong>LinkedIn</strong><br />
-              <span class="muted">linkedin.com/in/amaris-s-6b7120148</span>
-            </span>
-          </a>
+        <div class="resume-actions">
+          <!-- Put your resume.pdf in the repo root -->
+          <a class="btn primary" href="Amaris_Sneed_Resume.pdf" target="_blank" rel="noopener">📄 View Resume</a>
+          <a class="btn ghost" href="Amaris_Sneed_Resume.pdf" download>⬇️ Download PDF</a>
         </div>
 
-        <p class="muted" style="margin-top:10px;">Let’s connect and build something meaningful.</p>
+        <ul class="resume-highlights">
+          <li>🎓 M.S. Software Engineering</li>
+          <li>📊 Data Analytics Student (Python, SQL)</li>
+          <li>🧠 Front-End & Interactive UI Development</li>
+          <li> 🎥 Photography & Videography</li>
+        </ul>
+      </div>
+
+      <div id="contact" class="panel hidden">
+        <h3>Contact</h3>
+        <p>
+          GitHub:
+          <a href="https://github.com/PinkRanger2Amy" target="_blank" rel="noopener">PinkRanger2Amy</a>
+        </p>
+        <p>
+          LinkedIn:
+          <a href="www.linkedin.com/in/amaris-s-6b7120148" target="_blank" rel="noopener">amaris-sneed</a>
+        </p>
       </div>
     </section>
   </main>
@@ -184,6 +139,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 

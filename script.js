@@ -2,11 +2,13 @@ let points = 0;
 let multiplier = 1;
 let spinning = false;
 
+const TOTAL_SECTIONS = 5; // about, projects, skills, resume, contact
+
 const pointsEl = document.getElementById("points");
 const visitedCountEl = document.getElementById("visitedCount");
 const progressBarEl = document.getElementById("progressBar");
+const progressTextEl = document.getElementById("progressText");
 const messageEl = document.getElementById("message");
-const multEl = document.getElementById("multiplier");
 
 const spinBtn = document.getElementById("spinBtn");
 const claimBtn = document.getElementById("claimBtn");
@@ -17,7 +19,14 @@ const volumeEl = document.getElementById("volume");
 const symbols = ["⭐","🚀","💎","🍀","⚡","🧠","🛠️","🎧","🌟"];
 const cells = Array.from({ length: 9 }, (_, i) => document.getElementById(`c${i}`));
 
-const sectionPoints = { about: 25, projects: 35, skills: 30, contact: 20 };
+const sectionPoints = {
+  about: 25,
+  projects: 35,
+  skills: 30,
+  resume: 40,
+  contact: 20
+};
+
 const visited = new Set();
 let explorerBonusClaimed = false;
 
@@ -40,6 +49,7 @@ function beep({ freq = 440, duration = 0.08, type = "sine", gain = 0.15 }) {
 
   osc.type = type;
   osc.frequency.setValueAtTime(freq, now);
+
   g.gain.setValueAtTime(0.0001, now);
   g.gain.exponentialRampToValueAtTime(gain * vol, now + 0.01);
   g.gain.exponentialRampToValueAtTime(0.0001, now + duration);
@@ -50,7 +60,9 @@ function beep({ freq = 440, duration = 0.08, type = "sine", gain = 0.15 }) {
   osc.stop(now + duration + 0.02);
 }
 
-function playClick() { beep({ freq: 520, duration: 0.05, type: "square", gain: 0.12 }); }
+function playClick() {
+  beep({ freq: 520, duration: 0.05, type: "square", gain: 0.12 });
+}
 
 function playSpin() {
   [220, 260, 320, 420, 520, 620].forEach((f, i) =>
@@ -65,7 +77,6 @@ function playWin(big = false) {
   );
 }
 
-// Need a user gesture once
 document.addEventListener("click", () => { try { ensureAudio(); } catch {} }, { once: true });
 
 soundToggleBtn.addEventListener("click", () => {
@@ -135,14 +146,16 @@ function tickConfetti() {
 }
 tickConfetti();
 
-// ===== UI helpers =====
+// ===== UI =====
 function setMessage(text) { messageEl.textContent = text; }
 
 function updateUI() {
   pointsEl.textContent = points.toLocaleString();
   visitedCountEl.textContent = visited.size.toString();
-  progressBarEl.style.width = `${(visited.size / 4) * 100}%`;
-  multEl.textContent = `x${multiplier}`;
+
+  const pct = Math.round((visited.size / TOTAL_SECTIONS) * 100);
+  progressBarEl.style.width = `${pct}%`;
+  progressTextEl.textContent = `${pct}%`;
 }
 
 function addPoints(amount, reason) {
@@ -175,13 +188,13 @@ function countWinningLines(grid) {
 }
 
 function payoutForWins(winCount) {
-  if (winCount >= 3) return { base: 400, msg: `🎉 MEGA WIN! ${winCount} lines matched`, multUp: 2, confetti: 190, bigSound: true };
-  if (winCount === 2) return { base: 250, msg: "🔥 Big win! 2 lines matched", multUp: 1, confetti: 130, bigSound: true };
-  if (winCount === 1) return { base: 150, msg: "✅ Win! 1 line matched", multUp: 1, confetti: 80, bigSound: false };
+  if (winCount >= 3) return { base: 400, msg: `🎉 MEGA WIN! ${winCount} lines matched`, multUp: 2, confetti: 200, bigSound: true };
+  if (winCount === 2) return { base: 250, msg: "🔥 Big win! 2 lines matched", multUp: 1, confetti: 140, bigSound: true };
+  if (winCount === 1) return { base: 150, msg: "✅ Win! 1 line matched", multUp: 1, confetti: 90, bigSound: false };
   return { base: 25, msg: "🙂 No lines — consolation", multUp: 0, confetti: 0, bigSound: false };
 }
 
-// ===== Slot spin =====
+// ===== SLOT SPIN =====
 function spinGrid() {
   if (spinning) return;
   spinning = true;
@@ -211,7 +224,7 @@ function spinGrid() {
       if (winCount >= 1) playWin(pay.bigSound);
       if (pay.confetti > 0) burstConfetti(pay.confetti);
 
-      if (visited.size === 4 && !explorerBonusClaimed) {
+      if (visited.size === TOTAL_SECTIONS && !explorerBonusClaimed) {
         setMessage("All sections visited! Claim your Explorer Bonus 🎁");
       }
 
@@ -240,7 +253,7 @@ function visitSection(sectionId) {
     setMessage(`You’re already in ${sectionId}. Spin for bonuses 🎰`);
   }
 
-  if (visited.size === 4 && !explorerBonusClaimed) {
+  if (visited.size === TOTAL_SECTIONS && !explorerBonusClaimed) {
     setMessage("All sections visited! Claim your Explorer Bonus 🎁");
   }
 
@@ -255,12 +268,12 @@ document.querySelectorAll("[data-section]").forEach(btn => {
 claimBtn.addEventListener("click", () => {
   playClick();
   if (explorerBonusClaimed) return setMessage("Explorer Bonus already claimed ✅");
-  if (visited.size < 4) return setMessage("Visit all 4 sections first to claim the Explorer Bonus.");
+  if (visited.size < TOTAL_SECTIONS) return setMessage("Visit all sections first to claim the Explorer Bonus.");
 
   explorerBonusClaimed = true;
-  addPoints(400, "Explorer Bonus claimed 🎁");
+  addPoints(500, "Explorer Bonus claimed 🎁");
   playWin(true);
-  burstConfetti(210);
+  burstConfetti(240);
 });
 
 // ===== Reset =====
@@ -283,6 +296,7 @@ resetBtn.addEventListener("click", () => {
 showSection("about");
 updateUI();
 setMessage("Welcome! Spin 🎰 or explore sections to earn points ✨");
+
 
 
 
